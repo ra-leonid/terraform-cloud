@@ -4,4 +4,3 @@
 **/terraform/key.json
 *.tfstate
 *.tfstate.*
-**/secrets/*
