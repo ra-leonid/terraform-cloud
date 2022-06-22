@@ -1,5 +1,5 @@
 # Provider
-provider "yandex" {
+provider "registry.terraform.io/yandex-cloud/yandex" {
   # Only one of token or service_account_key_file must be specified.
   token     = var.yc_token
   #service_account_key_file = var.yc_key_file
