@@ -55,16 +55,16 @@ resource "yandex_compute_instance" "instance" {
     subnet_id = var.subnet_id
     nat       = var.nat
   }
-
+/*
   metadata = {
     ssh-keys = "${var.users}:${file("~/.ssh/id_rsa.pub")}"
   }
+*/
 }
 
 
 output "internal_ip_address_instance" {
   value = join("; ", yandex_compute_instance.instance.*.network_interface.0.ip_address)
-  #"${yandex_compute_instance.instance.network_interface.0.ip_address}"
 }
 
 output "external_ip_address_instance" {
