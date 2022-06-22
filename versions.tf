@@ -5,6 +5,7 @@ terraform {
       version = "0.61.0"
     }
   }
+
   backend "remote" {
     hostname = "app.terraform.io"
     organization = "ra-leonid"
