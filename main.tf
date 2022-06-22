@@ -27,6 +27,7 @@ module "news" {
   subnet_id     = module.vpc.subnet_ids[0]
   zone = var.yc_region
   folder_id = module.vpc.folder_id
+  id_rsa_pub = var.id_rsa_pub
   #image         = "centos-7"
   image         = "ubuntu-2004-lts"
   platform_id   = "standard-v2"

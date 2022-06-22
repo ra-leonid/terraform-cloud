@@ -16,6 +16,7 @@ variable boot_disk { default =  "network-hdd" }
 variable disk_size { default =  "20" }
 variable zone { default =  "" }
 variable folder_id { default =  "" }
+variable "id_rsa_pub" { default = "" }
 
 terraform {
   required_providers {
@@ -55,11 +56,11 @@ resource "yandex_compute_instance" "instance" {
     subnet_id = var.subnet_id
     nat       = var.nat
   }
-/*
+
   metadata = {
-    ssh-keys = "${var.users}:${file("~/.ssh/id_rsa.pub")}"
+    #ssh-keys = "${var.users}:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "${var.users}:${var.id_rsa_pub}"
   }
-*/
 }
 
 
