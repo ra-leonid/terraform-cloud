@@ -15,14 +15,14 @@ module "vpc" {
   description = "managed by terraform"
   create_folder = length(var.yc_folder_id) > 0 ? false : true
   yc_folder_id = var.yc_folder_id
-  name = terraform.workspace
-  subnets = local.vpc_subnets[terraform.workspace]
+  name = local.workspace
+  subnets = local.vpc_subnets[local.workspace]
 }
 
 
 module "news" {
   source = "./modules/instance"
-  instance_count = local.news_instance_count[terraform.workspace]
+  instance_count = local.news_instance_count[local.workspace]
 
   subnet_id     = module.vpc.subnet_ids[0]
   zone = var.yc_region
@@ -34,9 +34,9 @@ module "news" {
   description   = "News App Demo"
   instance_role = "news,balancer"
   users         = "ubuntu"
-  cores         = local.news_cores[terraform.workspace]
+  cores         = local.news_cores[local.workspace]
   boot_disk     = "network-ssd"
-  disk_size     = local.news_disk_size[terraform.workspace]
+  disk_size     = local.news_disk_size[local.workspace]
   nat           = "true"
   memory        = "2"
   core_fraction = "100"
@@ -47,6 +47,7 @@ module "news" {
 
 
 locals {
+  workspace = "stage"
   news_cores = {
     stage = 2
     prod = 2
